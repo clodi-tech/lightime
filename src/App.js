@@ -1,18 +1,22 @@
-import './App.css';
+import React, { useState, useEffect } from 'react';
 
 function App() {
+  const [time, setTime] = useState(new Date());
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTime(new Date());
+    }, 1); // update every millisecond
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          {(() => {
-            const now = new Date();
-            const time = `${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}.${now.getMilliseconds()}`;
-            return time;
-          })()}
-        </p>
-      </header>
-    </div>
+    <p>
+      {`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}.${time.getMilliseconds()}`}
+    </p>
   );
 }
 
