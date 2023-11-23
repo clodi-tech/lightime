@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import './App.css';
 
 function App() {
   const [time, setTime] = useState(new Date());
@@ -14,9 +15,11 @@ function App() {
   }, []);
 
   return (
-    <p>
+    <div className='App'>
+      <header className='App-header'>
       {`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}.${Math.floor(time.getMilliseconds() / 100)}`}
-    </p>
+      </header>
+    </div>
   );
 }
 
