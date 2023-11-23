@@ -6,7 +6,7 @@ function App() {
   useEffect(() => {
     const interval = setInterval(() => {
       setTime(new Date());
-    }, 1); // update every millisecond
+    }, 100); // frequency of update
 
     return () => {
       clearInterval(interval);
@@ -15,7 +15,7 @@ function App() {
 
   return (
     <p>
-      {`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}.${time.getMilliseconds()}`}
+      {`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}.${Math.floor(time.getMilliseconds() / 100)}`}
     </p>
   );
 }
