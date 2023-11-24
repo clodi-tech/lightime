@@ -19,7 +19,7 @@ function Clock() {
         const seconds = date.getSeconds().toString().padStart(2, '0');
         const tenths = Math.floor(date.getMilliseconds() / 100).toString();
 
-        return `${hours}:${minutes}:${seconds}.${tenths}`;
+        return `${hours}:${minutes}:${seconds}${tenths}`;
     };
 
     return <p>{formatTime(time)}</p>;
