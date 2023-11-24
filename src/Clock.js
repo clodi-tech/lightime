@@ -3,13 +3,15 @@ import { getSunrise, getSunset } from 'sunrise-sunset-js';
 import iconLocation from './location.svg';
 import iconSunrise from './sunrise.svg';
 import iconSunset from './sunset.svg';
-import iconTime from './time.svg';
+import iconElapsed from './elapsed.svg';
+import iconRemaining from './remaining.svg';
 
 function Clock() {
     const [coords, setCoords] = useState(null);
     const [lastEvent, setLastEvent] = useState(null);
     const [nextEvent, setNextEvent] = useState(null);
     const [elapsedTime, setElapsedTime] = useState(0);
+    const [remainingTime, setRemainingTime] = useState(0);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -60,6 +62,15 @@ function Clock() {
         return () => clearInterval(interval);
     }, [lastEvent]);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (nextEvent) {
+                setRemainingTime(Math.floor((nextEvent.time - new Date()) / 100));
+            }
+        }, 100);
+        return () => clearInterval(interval);
+    }, [nextEvent]);
+
     return (
         <div>
             {coords ? (
@@ -75,7 +86,7 @@ function Clock() {
                                 last {lastEvent.event}
                             </p>
                             <p className='row white big'>
-                                <img src={iconTime} alt='elapsed icon' className='icon-big' />
+                                <img src={iconElapsed} alt='elapsed icon' className='icon-big' />
                                 {elapsedTime}
                             </p>
                         </div>
@@ -83,10 +94,16 @@ function Clock() {
                         'Getting last event...'
                     )}
                     {nextEvent ? (
-                        <p className='row mid medium'>
-                            <img src={nextEvent.icon} alt='next icon' className='icon-medium' />
-                            next {nextEvent.event}
-                        </p>
+                        <div>
+                            <p className='row white big'>
+                                <img src={iconRemaining} alt='remaining icon' className='icon-big' />
+                                {remainingTime}
+                            </p>
+                            <p className='row mid medium'>
+                                <img src={nextEvent.icon} alt='next icon' className='icon-medium' />
+                                next {nextEvent.event}
+                            </p>
+                        </div>
                     ) : (
                         'Getting next event...'
                     )}
