@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Sunrise from './Sunrise';
 import Sunset from './Sunset';
 import Time from './Time';
+import iconLocation from './location.svg';
 
 function Clock() {
     const [coords, setCoords] = useState(null);
@@ -20,8 +21,10 @@ function Clock() {
             {coords ? (
                 <>
                     <Sunrise latitude={coords.latitude} longitude={coords.longitude} />
-                    <p>{coords.latitude}</p>
-                    <p>{coords.longitude}</p>
+                    <p className='row'>
+                        <img src={iconLocation} alt='location icon' className='icon' />
+                        {coords.latitude} {coords.longitude}
+                    </p>
                     <Time />
                     <Sunset latitude={coords.latitude} longitude={coords.longitude} />
                 </>

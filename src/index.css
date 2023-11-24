@@ -12,7 +12,7 @@ body {
   padding-right: 10px;
 }
 
-.sunrise-sunset{
+.row{
   display: flex;
   align-items: center;
   justify-content: center;
