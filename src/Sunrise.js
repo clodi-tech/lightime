@@ -13,7 +13,7 @@ function Sunrise({ latitude, longitude }) { // use latitude and longitude props
 
     return (
         <p className='row mid medium'>
-            <img src={iconSunrise} alt='sunrise icon' className='icon' />
+            <img src={iconSunrise} alt='sunrise icon' className='icon-medium' />
             {sunrise ? sunrise : 'Calculating sunrise time...'}
         </p>
     );

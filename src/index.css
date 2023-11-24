@@ -7,7 +7,19 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon{
+.icon-big{
+  width: calc(30px + 2vmin);
+  height: calc(30px + 2vmin);
+  padding-right: 30px;
+}
+
+.icon-medium{
+  width: calc(19px + 2vmin);
+  height: calc(19px + 2vmin);
+  padding-right: 19px;
+}
+
+.icon-small{
   width: calc(12px + 2vmin);
   height: calc(12px + 2vmin);
   padding-right: 12px;
