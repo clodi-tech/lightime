@@ -14,9 +14,9 @@ function Clock() {
   }, []);
 
   return (
-    <div>
+    <p>
       {`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}.${Math.floor(time.getMilliseconds() / 100)}`}
-    </div>
+    </p>
   );
 }
 

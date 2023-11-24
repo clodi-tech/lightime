@@ -1,14 +1,16 @@
 import React from 'react';
 import './App.css';
 import Clock from './Clock';
+import Sunrise from './Sunrise';
+import Sunset from './Sunset';
 
 function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-        <p>sunrise time</p>
+        <Sunrise />
         <Clock />
-        <p>sunset time</p>
+        <Sunset />
       </header>
     </div>
   );
