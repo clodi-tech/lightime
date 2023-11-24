@@ -3,6 +3,7 @@ import Sunrise from './Sunrise';
 import Sunset from './Sunset';
 import Time from './Time';
 import iconLocation from './location.svg';
+import Last from './Last';
 
 function Clock() {
     const [coords, setCoords] = useState(null);
@@ -24,6 +25,7 @@ function Clock() {
                         <img src={iconLocation} alt='location icon' className='icon-small' />
                         {coords.latitude} {coords.longitude}
                     </p>
+                    <Last latitude={coords.latitude} longitude={coords.longitude} />
                     <Sunrise latitude={coords.latitude} longitude={coords.longitude} />
                     <Time />
                     <Sunset latitude={coords.latitude} longitude={coords.longitude} />
