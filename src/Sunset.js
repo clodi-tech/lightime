@@ -3,23 +3,18 @@ import { getSunset } from 'sunrise-sunset-js';
 import iconSunset from './sunset.svg';
 import './index.css';
 
-function Sunset() {
-    const [Sunset, setSunset] = useState(null);
+function Sunset({ latitude, longitude }) { // use latitude and longitude props
+    const [sunset, setSunset] = useState(null);
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition((position) => {
-        const latitude = position.coords.latitude;
-        const longitude = position.coords.longitude;
-        const sunriseTime = getSunset(latitude, longitude);
-
-        setSunset(sunriseTime.toLocaleTimeString());
-    });
-}, []);
+        const sunsetTime = getSunset(latitude, longitude);
+        setSunset(sunsetTime.toLocaleTimeString());
+    }, [latitude, longitude]); // recalculate sunrise time when latitude or longitude changes
 
     return (
         <p>
             <img src={iconSunset} alt='sunset icon' className='icon'/>
-            {Sunset ? Sunset : 'calculating sunset time...'}
+            {sunset ? sunset : 'Calculating sunset time...'}
         </p>
     );
 }

@@ -1,28 +1,33 @@
 import React, { useState, useEffect } from 'react';
+import Sunrise from './Sunrise';
+import Sunset from './Sunset';
+import Time from './Time';
 
 function Clock() {
-    const [time, setTime] = useState(new Date());
+    const [coords, setCoords] = useState(null);
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setTime(new Date());
-        }, 100); // update every 100 milliseconds
-
-        return () => {
-            clearInterval(interval);
-        };
+        navigator.geolocation.getCurrentPosition((position) => {
+            setCoords({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+            });
+        });
     }, []);
 
-    const formatTime = (date) => {
-        const hours = date.getHours().toString().padStart(2, '0');
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-        const seconds = date.getSeconds().toString().padStart(2, '0');
-        const tenths = Math.floor(date.getMilliseconds() / 100).toString();
-
-        return `${hours}:${minutes}:${seconds}${tenths}`;
-    };
-
-    return <p>{formatTime(time)}</p>;
+    return (
+        <div>
+            {coords ? (
+                <>
+                    <Sunrise latitude={coords.latitude} longitude={coords.longitude} />
+                    <Time />
+                    <Sunset latitude={coords.latitude} longitude={coords.longitude} />
+                </>
+            ) : (
+                'Getting location...'
+            )}
+        </div>
+    );
 }
 
 export default Clock;
