@@ -8,14 +8,14 @@ body {
 }
 
 .icon-big{
-  width: calc(30px + 2vmin);
-  height: calc(30px + 2vmin);
-  padding-right: 30px;
+  width: calc(31px + 4vmin);
+  height: calc(31px + 4vmin);
+  padding-right: 31px;
 }
 
 .icon-medium{
-  width: calc(19px + 2vmin);
-  height: calc(19px + 2vmin);
+  width: calc(19px + 3vmin);
+  height: calc(19px + 3vmin);
   padding-right: 19px;
 }
 
@@ -52,11 +52,11 @@ body {
 }
 
 .big{
-  font-size: calc(30px + 2vmin);
+  font-size: calc(31px + 4vmin);
 }
 
 .medium{
-  font-size: calc(19px + 2vmin);
+  font-size: calc(19px + 3vmin);
 }
 
 .small{
