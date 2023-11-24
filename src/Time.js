@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import iconTime from './time.svg';
 
 function Time() {
     const [time, setTime] = useState(new Date());
@@ -20,9 +21,10 @@ function Time() {
         const tenths = Math.floor(date.getMilliseconds() / 100).toString();
 
         return (
-            <div className='big'>
+            <p className='row big'>
+                <img src={iconTime} alt='clock icon' className='icon-big' />
                 {hours}:{minutes}:{seconds}{tenths}
-            </div>
+            </p>
             );
     };
 
