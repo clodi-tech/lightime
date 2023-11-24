@@ -4,6 +4,7 @@ import Sunset from './Sunset';
 import Time from './Time';
 import iconLocation from './location.svg';
 import Last from './Last';
+import Next from './Next';
 
 function Clock() {
     const [coords, setCoords] = useState(null);
@@ -28,6 +29,7 @@ function Clock() {
                     <Last latitude={coords.latitude} longitude={coords.longitude} />
                     <Sunrise latitude={coords.latitude} longitude={coords.longitude} />
                     <Time />
+                    <Next />
                     <Sunset latitude={coords.latitude} longitude={coords.longitude} />
                 </>
             ) : (
