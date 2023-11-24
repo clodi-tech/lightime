@@ -1,34 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import iconTime from './time.svg';
+import React from 'react';
 
-function Time() {
-    const [time, setTime] = useState(new Date());
+function Time({ lastEvent }) {
+  const timePassed = lastEvent ? Math.floor((new Date() - lastEvent.time) / 1000 / 60) : null;
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-            setTime(new Date());
-        }, 100); // update every 100 milliseconds
-
-        return () => {
-            clearInterval(interval);
-        };
-    }, []);
-
-    const formatTime = (date) => {
-        const hours = date.getHours().toString().padStart(2, '0');
-        const minutes = date.getMinutes().toString().padStart(2, '0');
-        const seconds = date.getSeconds().toString().padStart(2, '0');
-        const tenths = Math.floor(date.getMilliseconds() / 100).toString();
-
-        return (
-            <p className='row big'>
-                <img src={iconTime} alt='clock icon' className='icon-big' />
-                {hours}:{minutes}:{seconds}{tenths}
-            </p>
-            );
-    };
-
-    return <p>{formatTime(time)}</p>;
+  return (
+    <div>
+      {timePassed !== null ? `Time passed since last event: ${timePassed} minutes` : 'Calculating time...'}
+    </div>
+  );
 }
 
 export default Time;
