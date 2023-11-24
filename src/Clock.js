@@ -20,11 +20,11 @@ function Clock() {
         <div>
             {coords ? (
                 <>
-                    <Sunrise latitude={coords.latitude} longitude={coords.longitude} />
                     <p className='row dark small'>
                         <img src={iconLocation} alt='location icon' className='icon-small' />
                         {coords.latitude} {coords.longitude}
                     </p>
+                    <Sunrise latitude={coords.latitude} longitude={coords.longitude} />
                     <Time />
                     <Sunset latitude={coords.latitude} longitude={coords.longitude} />
                 </>
