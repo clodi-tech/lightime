@@ -16,8 +16,8 @@ function Sunrise() {
 
     return (
         <p>
-            <img src={iconSunrise} alt='Sunrise' className='icon' />
-            {sunrise ? sunrise : 'Calculating sunrise time...'}
+            <img src={iconSunrise} alt='sunrise icon' className='icon' />
+            {sunrise ? sunrise : 'calculating sunrise time...'}
         </p>
     );
 }

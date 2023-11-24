@@ -16,8 +16,8 @@ function Sunset() {
 
     return (
         <p>
-            <img src={iconSunset} alt='Sunset' className='icon'/>
-            {Sunset ? Sunset : 'Calculating Sunset time...'}
+            <img src={iconSunset} alt='sunset icon' className='icon'/>
+            {Sunset ? Sunset : 'calculating sunset time...'}
         </p>
     );
 }
