@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getSunset } from 'sunrise-sunset-js';
 import iconSunset from './sunset.svg';
-import './index.css';
 
 function Sunset({ latitude, longitude }) { // use latitude and longitude props
     const [sunset, setSunset] = useState(null);
