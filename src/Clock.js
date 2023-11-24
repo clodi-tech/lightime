@@ -3,11 +3,13 @@ import { getSunrise, getSunset } from 'sunrise-sunset-js';
 import iconLocation from './location.svg';
 import iconSunrise from './sunrise.svg';
 import iconSunset from './sunset.svg';
+import iconTime from './time.svg';
 
 function Clock() {
     const [coords, setCoords] = useState(null);
     const [lastEvent, setLastEvent] = useState(null);
     const [nextEvent, setNextEvent] = useState(null);
+    const [elapsedTime, setElapsedTime] = useState(0);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -49,6 +51,15 @@ function Clock() {
         }
     }, [coords]);
 
+    useEffect(() => {
+        const interval = setInterval(() => {
+            if (lastEvent) {
+                setElapsedTime(Math.floor((new Date() - lastEvent.time) / 100));
+            }
+        }, 100);
+        return () => clearInterval(interval);
+    }, [lastEvent]);
+
     return (
         <div>
             {coords ? (
@@ -58,10 +69,16 @@ function Clock() {
                         {coords.latitude} {coords.longitude}
                     </p>
                     {lastEvent ? (
+                        <div>
                             <p className='row mid medium'>
                                 <img src={lastEvent.icon} alt='last icon' className='icon-medium' />
                                 last {lastEvent.event}
                             </p>
+                            <p className='row white big'>
+                                <img src={iconTime} alt='elapsed icon' className='icon-big' />
+                                {elapsedTime}
+                            </p>
+                        </div>
                     ) : (
                         'Getting last event...'
                     )}
