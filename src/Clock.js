@@ -21,7 +21,7 @@ function Clock() {
             {coords ? (
                 <>
                     <Sunrise latitude={coords.latitude} longitude={coords.longitude} />
-                    <p className='row dark'>
+                    <p className='row dark small'>
                         <img src={iconLocation} alt='location icon' className='icon' />
                         {coords.latitude} {coords.longitude}
                     </p>

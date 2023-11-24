@@ -19,7 +19,11 @@ function Time() {
         const seconds = date.getSeconds().toString().padStart(2, '0');
         const tenths = Math.floor(date.getMilliseconds() / 100).toString();
 
-        return `${hours}:${minutes}:${seconds}${tenths}`;
+        return (
+            <div className='big'>
+                {hours}:{minutes}:{seconds}{tenths}
+            </div>
+            );
     };
 
     return <p>{formatTime(time)}</p>;
