@@ -20,6 +20,8 @@ function Clock() {
             {coords ? (
                 <>
                     <Sunrise latitude={coords.latitude} longitude={coords.longitude} />
+                    <p>{coords.latitude}</p>
+                    <p>{coords.longitude}</p>
                     <Time />
                     <Sunset latitude={coords.latitude} longitude={coords.longitude} />
                 </>
