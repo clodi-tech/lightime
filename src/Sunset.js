@@ -9,7 +9,7 @@ function Sunset({ latitude, longitude }) { // use latitude and longitude props
     useEffect(() => {
         const sunsetTime = getSunset(latitude, longitude);
         setSunset(sunsetTime.toLocaleTimeString());
-    }, [latitude, longitude]); // recalculate sunrise time when latitude or longitude changes
+    }, [latitude, longitude]); // recalculate sunset time when latitude or longitude changes
 
     return (
         <p>
