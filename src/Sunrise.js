@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { getSunrise } from 'sunrise-sunset-js';
 import iconSunrise from './sunrise.svg';
+import './index.css';
 
 function Sunrise() {
     const [sunrise, setSunrise] = useState(null);
@@ -15,7 +16,7 @@ function Sunrise() {
 
     return (
         <p>
-            <img src={iconSunrise} alt='Sunrise' />
+            <img src={iconSunrise} alt='Sunrise' className='icon' />
             {sunrise ? sunrise : 'Calculating sunrise time...'}
         </p>
     );
