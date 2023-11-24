@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Sunrise from './Sunrise';
-import Sunset from './Sunset';
 import Time from './Time';
 import iconLocation from './location.svg';
 import Last from './Last';
@@ -27,10 +25,8 @@ function Clock() {
                         {coords.latitude} {coords.longitude}
                     </p>
                     <Last latitude={coords.latitude} longitude={coords.longitude} />
-                    <Sunrise latitude={coords.latitude} longitude={coords.longitude} />
                     <Time />
-                    <Next />
-                    <Sunset latitude={coords.latitude} longitude={coords.longitude} />
+                    <Next latitude={coords.latitude} longitude={coords.longitude} />
                 </>
             ) : (
                 'Getting location...'
