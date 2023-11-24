@@ -12,7 +12,7 @@ function Sunset({ latitude, longitude }) { // use latitude and longitude props
     }, [latitude, longitude]); // recalculate sunset time when latitude or longitude changes
 
     return (
-        <p className='row'>
+        <p className='row mid'>
             <img src={iconSunset} alt='sunset icon' className='icon'/>
             {sunset ? sunset : 'Calculating sunset time...'}
         </p>
