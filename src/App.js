@@ -17,7 +17,7 @@ function App() {
   return (
     <div className='App'>
       <header className='App-header'>
-      {`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}.${Math.floor(time.getMilliseconds() / 100)}`}
+      {`${time.getHours()}:${time.getMinutes()}:${time.getSeconds()}${Math.floor(time.getMilliseconds() / 100)}`}
       </header>
     </div>
   );
