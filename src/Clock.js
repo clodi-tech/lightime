@@ -13,13 +13,16 @@ function Clock() {
         };
     }, []);
 
-    const formatTime = (timeElement) => timeElement.toString().padStart(2, '0');
+    const formatTime = (date) => {
+        const hours = date.getHours().toString().padStart(2, '0');
+        const minutes = date.getMinutes().toString().padStart(2, '0');
+        const seconds = date.getSeconds().toString().padStart(2, '0');
+        const tenths = Math.floor(date.getMilliseconds() / 100).toString();
 
-    return (
-        <p>
-            {`${formatTime(time.getHours())}:${formatTime(time.getMinutes())}:${formatTime(time.getSeconds())}${Math.floor(time.getMilliseconds() / 100)}`}
-        </p>
-    );
+        return `${hours}:${minutes}:${seconds}.${tenths}`;
+    };
+
+    return <p>{formatTime(time)}</p>;
 }
 
 export default Clock;
