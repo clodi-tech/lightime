@@ -7,11 +7,13 @@ function Sunrise() {
     const [sunrise, setSunrise] = useState(null);
 
     useEffect(() => {
-        const latitude = 40.7128; // replace with your latitude
-        const longitude = -74.0060; // replace with your longitude
-        const sunriseTime = getSunrise(latitude, longitude);
+            navigator.geolocation.getCurrentPosition((position) => {
+            const latitude = position.coords.latitude;
+            const longitude = position.coords.longitude;
+            const sunriseTime = getSunrise(latitude, longitude);
 
-        setSunrise(sunriseTime.toLocaleTimeString());
+            setSunrise(sunriseTime.toLocaleTimeString());
+        });
     }, []);
 
     return (
