@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
-import Time from './Time';
-import Next from './Next';
 import iconLocation from './location.svg';
 import iconSunrise from './sunrise.svg';
 import iconSunset from './sunset.svg';
@@ -9,6 +7,7 @@ import iconSunset from './sunset.svg';
 function Clock() {
     const [coords, setCoords] = useState(null);
     const [lastEvent, setLastEvent] = useState(null);
+    const [nextEvent, setNextEvent] = useState(null);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -23,18 +22,29 @@ function Clock() {
         if (coords) {
             const today = new Date();
             const yesterday = new Date(today);
+            const tomorrow = new Date(today);
             yesterday.setDate(yesterday.getDate() - 1);
+            tomorrow.setDate(tomorrow.getDate() + 1);
 
             const sunriseToday = getSunrise(coords.latitude, coords.longitude);
             const sunsetToday = getSunset(coords.latitude, coords.longitude);
             const sunsetYesterday = getSunset(coords.latitude, coords.longitude, yesterday);
+            const sunriseTomorrow = getSunrise(coords.latitude, coords.longitude, tomorrow);
 
-            if (today > sunriseToday && today > sunsetToday) {
-                setLastEvent({ event: 'Sunset', time: sunsetToday, icon: iconSunset });
+            if (today > sunsetToday) {
+                setLastEvent({ event: 'sunset', time: sunsetToday, icon: iconSunset });
             } else if (today > sunriseToday) {
-                setLastEvent({ event: 'Sunrise', time: sunriseToday, icon: iconSunrise });
+                setLastEvent({ event: 'sunrise', time: sunriseToday, icon: iconSunrise });
             } else {
-                setLastEvent({ event: 'Sunset', time: sunsetYesterday, icon: iconSunset });
+                setLastEvent({ event: 'sunset', time: sunsetYesterday, icon: iconSunset });
+            }
+
+            if (today < sunriseToday) {
+                setNextEvent({ event: 'sunrise', time: sunriseToday, icon: iconSunrise });
+            } else if (today < sunsetToday) {
+                setNextEvent({ event: 'sunset', time: sunsetToday, icon: iconSunset });
+            } else {
+                setNextEvent({ event: 'sunrise', time: sunriseTomorrow, icon: iconSunrise });
             }
         }
     }, [coords]);
@@ -48,15 +58,21 @@ function Clock() {
                         {coords.latitude} {coords.longitude}
                     </p>
                     {lastEvent ? (
-                        <p className='row mid medium'>
-                            <img src={lastEvent.icon} alt='last icon' className='icon-medium' />
-                            last {lastEvent.event}
-                        </p>
+                            <p className='row mid medium'>
+                                <img src={lastEvent.icon} alt='last icon' className='icon-medium' />
+                                last {lastEvent.event}
+                            </p>
                     ) : (
                         'Getting last event...'
                     )}
-                    <Time lastEvent={lastEvent} />
-                    <Next latitude={coords.latitude} longitude={coords.longitude} />
+                    {nextEvent ? (
+                        <p className='row mid medium'>
+                            <img src={nextEvent.icon} alt='next icon' className='icon-medium' />
+                            next {nextEvent.event}
+                        </p>
+                    ) : (
+                        'Getting next event...'
+                    )}
                 </>
             ) : (
                 'Getting location...'
