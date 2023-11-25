@@ -121,7 +121,8 @@ function Clock() {
         <div>
             {coords ? (
                 <>
-                    <p className='row dark small' title='your current position'>
+                    <p className='row dark small tooltip'>
+                        <span className='tooltiptext'>your current position</span>
                         <img src={iconLocation} alt='location icon' className='icon-small' />
                         {coords.latitude} {coords.longitude}
                     </p>
@@ -134,7 +135,10 @@ function Clock() {
                                 </div>
                             </p>
                             <p className='row white big'>
-                                <img src={iconElapsed} alt='elapsed icon' className='icon-big' title='time passed from the last event' />
+                                <div className='tooltip'>
+                                    <img src={iconElapsed} alt='elapsed icon' className='icon-big' />
+                                    <span className='tooltiptext'>time passed from the last event</span>
+                                </div>
                                 <div onClick={toggleElaFormat}>{formatElapsed(elapsedTime)}</div>
                             </p>
                         </div>
@@ -144,7 +148,10 @@ function Clock() {
                     {nextEvent ? (
                         <div>
                             <p className='row white big'>
-                                <img src={iconRemaining} alt='remaining icon' className='icon-big' title='time remaining to the next event' />
+                                <div className='tooltip'>
+                                    <img src={iconRemaining} alt='remaining icon' className='icon-big' />
+                                    <span className='tooltiptext'>time remaining to the next event</span>
+                                </div>
                                 <div onClick={toggleRemFormat}>{formatRemaining(remainingTime)}</div>
                             </p>
                             <p className='row mid medium'>
