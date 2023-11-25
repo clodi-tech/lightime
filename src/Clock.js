@@ -14,6 +14,7 @@ function Clock() {
     const [remainingTime, setRemainingTime] = useState(0);
     const [elapsedFormat, setElaFormat] = useState('t');
     const [remainingFormat, setRemFormat] = useState('t');
+    const [showLast, setShowLast] = useState(false);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -107,6 +108,10 @@ function Clock() {
         }
     };
 
+    const toggleShowLast = () => {
+        setShowLast(!showLast);
+      };
+
     return (
         <div>
             {coords ? (
@@ -119,7 +124,9 @@ function Clock() {
                         <div>
                             <p className='row mid medium'>
                                 <img src={lastEvent.icon} alt='last icon' className='icon-medium' />
-                                <div>last {lastEvent.event}</div>
+                                <div onClick={toggleShowLast}>
+                                    {showLast ? lastEvent.time : 'last ' + lastEvent.event}
+                                </div>
                             </p>
                             <p className='row white big'>
                                 <img src={iconElapsed} alt='elapsed icon' className='icon-big' />
