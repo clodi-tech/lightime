@@ -12,6 +12,8 @@ function Clock() {
     const [nextEvent, setNextEvent] = useState(null);
     const [elapsedTime, setElapsedTime] = useState(0);
     const [remainingTime, setRemainingTime] = useState(0);
+    const [elapsedFormat, setElaFormat] = useState('t');
+    const [remainingFormat, setRemFormat] = useState('t');
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -71,6 +73,36 @@ function Clock() {
         return () => clearInterval(interval);
     }, [nextEvent]);
 
+    const toggleElaFormat = () => {
+        setElaFormat(elapsedFormat === 't' ? 'hms' : 't');
+    };
+
+    const toggleRemFormat = () => {
+        setRemFormat(remainingFormat === 't' ? 'hms' : 't');
+    };
+
+    const formatElapsed = (time) => {
+        if (elapsedFormat === 't') {
+            return time;
+        } else {
+            const hours = Math.floor(time / 3600);
+            const minutes = Math.floor((time % 3600) / 60);
+            const seconds = time % 60;
+            return `${hours}:${minutes}:${seconds}`;
+        }
+    };
+
+    const formatRemaining = (time) => {
+        if (remainingFormat === 't') {
+            return time;
+        } else {
+            const hours = Math.floor(time / 3600);
+            const minutes = Math.floor((time % 3600) / 60);
+            const seconds = time % 60;
+            return `${hours}:${minutes}:${seconds}`;
+        }
+    };
+
     return (
         <div>
             {coords ? (
@@ -87,7 +119,7 @@ function Clock() {
                             </p>
                             <p className='row white big'>
                                 <img src={iconElapsed} alt='elapsed icon' className='icon-big' />
-                                {elapsedTime}
+                                <div onClick={toggleElaFormat}>{formatElapsed(elapsedTime)}</div>
                             </p>
                         </div>
                     ) : (
@@ -97,7 +129,7 @@ function Clock() {
                         <div>
                             <p className='row white big'>
                                 <img src={iconRemaining} alt='remaining icon' className='icon-big' />
-                                {remainingTime}
+                                <div onClick={toggleRemFormat}>{formatRemaining(remainingTime)}</div>
                             </p>
                             <p className='row mid medium'>
                                 <img src={nextEvent.icon} alt='next icon' className='icon-medium' />
