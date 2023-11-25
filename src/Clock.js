@@ -121,7 +121,7 @@ function Clock() {
         <div>
             {coords ? (
                 <>
-                    <p className='row dark small'>
+                    <p className='row dark small' title='your current position'>
                         <img src={iconLocation} alt='location icon' className='icon-small' />
                         {coords.latitude} {coords.longitude}
                     </p>
@@ -134,7 +134,7 @@ function Clock() {
                                 </div>
                             </p>
                             <p className='row white big'>
-                                <img src={iconElapsed} alt='elapsed icon' className='icon-big' />
+                                <img src={iconElapsed} alt='elapsed icon' className='icon-big' title='time passed from the last event' />
                                 <div onClick={toggleElaFormat}>{formatElapsed(elapsedTime)}</div>
                             </p>
                         </div>
@@ -144,7 +144,7 @@ function Clock() {
                     {nextEvent ? (
                         <div>
                             <p className='row white big'>
-                                <img src={iconRemaining} alt='remaining icon' className='icon-big' />
+                                <img src={iconRemaining} alt='remaining icon' className='icon-big' title='time remaining to the next event' />
                                 <div onClick={toggleRemFormat}>{formatRemaining(remainingTime)}</div>
                             </p>
                             <p className='row mid medium'>
