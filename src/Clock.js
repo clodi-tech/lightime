@@ -86,9 +86,9 @@ function Clock() {
             return time;
         } else {
             const timeInSeconds = time / 10;
-            const hours = Math.floor(timeInSeconds / 3600);
-            const minutes = Math.floor((timeInSeconds % 3600) / 60);
-            const seconds = Math.floor(timeInSeconds % 60);
+            const hours = Math.floor(timeInSeconds / 3600).toString().padStart(2, '0');
+            const minutes = Math.floor((timeInSeconds % 3600) / 60).toString().padStart(2, '0');
+            const seconds = Math.floor(timeInSeconds % 60).toString().padStart(2, '0');
             const tenths = time % 10; // get the remaining tenths of a second
             return `${hours}:${minutes}:${seconds}${tenths}`;
         }
@@ -99,9 +99,9 @@ function Clock() {
             return time;
         } else {
             const timeInSeconds = time / 10;
-            const hours = Math.floor(timeInSeconds / 3600);
-            const minutes = Math.floor((timeInSeconds % 3600) / 60);
-            const seconds = Math.floor(timeInSeconds % 60);
+            const hours = Math.floor(timeInSeconds / 3600).toString().padStart(2, '0');
+            const minutes = Math.floor((timeInSeconds % 3600) / 60).toString().padStart(2, '0');
+            const seconds = Math.floor(timeInSeconds % 60).toString().padStart(2, '0');
             const tenths = time % 10; // get the remaining tenths of a second
             return `${hours}:${minutes}:${seconds}${tenths}`;
         }
