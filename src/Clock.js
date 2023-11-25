@@ -119,7 +119,7 @@ function Clock() {
                         <div>
                             <p className='row mid medium'>
                                 <img src={lastEvent.icon} alt='last icon' className='icon-medium' />
-                                last {lastEvent.event}
+                                <div>last {lastEvent.event}</div>
                             </p>
                             <p className='row white big'>
                                 <img src={iconElapsed} alt='elapsed icon' className='icon-big' />
@@ -137,7 +137,7 @@ function Clock() {
                             </p>
                             <p className='row mid medium'>
                                 <img src={nextEvent.icon} alt='next icon' className='icon-medium' />
-                                next {nextEvent.event}
+                                <div>next {nextEvent.event}</div>
                             </p>
                         </div>
                     ) : (
