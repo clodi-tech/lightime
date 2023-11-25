@@ -130,7 +130,7 @@ function Clock() {
                             <p className='row mid medium'>
                                 <img src={lastEvent.icon} alt='last icon' className='icon-medium' />
                                 <div onClick={toggleShowLast}>
-                                    {showLast ? lastEvent.time.toLocaleString() : 'last ' + lastEvent.event}
+                                    {showLast ? lastEvent.time.toLocaleTimeString() : 'last ' + lastEvent.event}
                                 </div>
                             </p>
                             <p className='row white big'>
@@ -150,7 +150,7 @@ function Clock() {
                             <p className='row mid medium'>
                                 <img src={nextEvent.icon} alt='next icon' className='icon-medium' />
                                 <div onClick={toggleShowNext}>
-                                    {showNext ? nextEvent.time.toLocaleString() : 'next ' + nextEvent.event}
+                                    {showNext ? nextEvent.time.toLocaleTimeString() : 'next ' + nextEvent.event}
                                 </div>
                             </p>
                         </div>
