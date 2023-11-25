@@ -85,10 +85,12 @@ function Clock() {
         if (elapsedFormat === 't') {
             return time;
         } else {
-            const hours = Math.floor(time / 3600);
-            const minutes = Math.floor((time % 3600) / 60);
-            const seconds = time % 60;
-            return `${hours}:${minutes}:${seconds}`;
+            const timeInSeconds = time / 10;
+            const hours = Math.floor(timeInSeconds / 3600);
+            const minutes = Math.floor((timeInSeconds % 3600) / 60);
+            const seconds = Math.floor(timeInSeconds % 60);
+            const tenths = time % 10; // get the remaining tenths of a second
+            return `${hours}:${minutes}:${seconds}${tenths}`;
         }
     };
 
@@ -96,10 +98,12 @@ function Clock() {
         if (remainingFormat === 't') {
             return time;
         } else {
-            const hours = Math.floor(time / 3600);
-            const minutes = Math.floor((time % 3600) / 60);
-            const seconds = time % 60;
-            return `${hours}:${minutes}:${seconds}`;
+            const timeInSeconds = time / 10;
+            const hours = Math.floor(timeInSeconds / 3600);
+            const minutes = Math.floor((timeInSeconds % 3600) / 60);
+            const seconds = Math.floor(timeInSeconds % 60);
+            const tenths = time % 10; // get the remaining tenths of a second
+            return `${hours}:${minutes}:${seconds}${tenths}`;
         }
     };
 
