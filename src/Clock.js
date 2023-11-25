@@ -15,6 +15,7 @@ function Clock() {
     const [elapsedFormat, setElaFormat] = useState('t');
     const [remainingFormat, setRemFormat] = useState('t');
     const [showLast, setShowLast] = useState(false);
+    const [showNext, setShowNext] = useState(false);
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -110,7 +111,11 @@ function Clock() {
 
     const toggleShowLast = () => {
         setShowLast(!showLast);
-      };
+    };
+
+    const toggleShowNext = () => {
+        setShowNext(!showNext);
+    }
 
     return (
         <div>
@@ -144,7 +149,9 @@ function Clock() {
                             </p>
                             <p className='row mid medium'>
                                 <img src={nextEvent.icon} alt='next icon' className='icon-medium' />
-                                <div>next {nextEvent.event}</div>
+                                <div onClick={toggleShowNext}>
+                                    {showNext ? nextEvent.time.toLocaleString() : 'next ' + nextEvent.event}
+                                </div>
                             </p>
                         </div>
                     ) : (
