@@ -104,13 +104,10 @@ function Clock() {
         }
     };
 
-    const toggleShowLast = () => {
-        setShowLast(!showLast);
-    };
+    const toggle = (setter) => () => setter(state => !state);
 
-    const toggleShowNext = () => {
-        setShowNext(!showNext);
-    }
+    const toggleShowLast = toggle(setShowLast);
+    const toggleShowNext = toggle(setShowNext);
 
     return (
         <div>
