@@ -27,17 +27,33 @@ function Clock() {
     useEffect(() => {
         if (coords) {
             const today = new Date();
-            const calcDate = (days) => new Date(today.getTime() + days * 24 * 60 * 60 * 1000);
+            const yesterday = new Date(today);
+            const tomorrow = new Date(today);
+            yesterday.setDate(yesterday.getDate() - 1);
+            tomorrow.setDate(tomorrow.getDate() + 1);
 
-            const events = [
-                { event: 'sunset', time: getSunset(coords.latitude, coords.longitude, calcDate(-1)), icon: iconSunset },
-                { event: 'sunrise', time: getSunrise(coords.latitude, coords.longitude), icon: iconSunrise },
-                { event: 'sunset', time: getSunset(coords.latitude, coords.longitude), icon: iconSunset },
-                { event: 'sunrise', time: getSunrise(coords.latitude, coords.longitude, calcDate(1)), icon: iconSunrise },
-            ];
+            const sunriseToday = getSunrise(coords.latitude, coords.longitude);
+            const sunsetToday = getSunset(coords.latitude, coords.longitude);
+            const sunsetYesterday = getSunset(coords.latitude, coords.longitude, yesterday);
+            const sunriseTomorrow = getSunrise(coords.latitude, coords.longitude, tomorrow);
 
-            setLastEvent(events.reverse().find(e => e.time < today));
-            setNextEvent(events.find(e => e.time > today));
+            const setEvent = (event, time, icon) => ({ event, time, icon });
+
+            setLastEvent(
+                today > sunsetToday
+                    ? setEvent('sunset', sunsetToday, iconSunset)
+                        : today > sunriseToday
+                        ? setEvent('sunrise', sunriseToday, iconSunrise)
+                            : setEvent('sunset', sunsetYesterday, iconSunset)
+            );
+
+            setNextEvent(
+                today < sunriseToday
+                    ? setEvent('sunrise', sunriseToday, iconSunrise)
+                        : today < sunsetToday
+                        ? setEvent('sunset', sunsetToday, iconSunset)
+                            : setEvent('sunrise', sunriseTomorrow, iconSunrise)
+            );
         }
     }, [coords]);
 
