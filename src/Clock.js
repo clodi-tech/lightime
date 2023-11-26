@@ -115,7 +115,7 @@ function Clock() {
                                     <span className='tooltiptext'>last event</span>
                                 </div>
                                 <div onClick={toggleShowLast}>
-                                    {showLast ? lastEvent.time.toLocaleTimeString() : lastEvent.event}
+                                    {showLast ? lastEvent.time.toLocaleString() : lastEvent.event}
                                 </div>
                             </p>
                             <p className='row white big'>
@@ -144,7 +144,7 @@ function Clock() {
                                     <span className='tooltiptext'>next event</span>
                                 </div>
                                 <div onClick={toggleShowNext}>
-                                    {showNext ? nextEvent.time.toLocaleTimeString() : nextEvent.event}
+                                    {showNext ? nextEvent.time.toLocaleString() : nextEvent.event}
                                 </div>
                             </p>
                         </div>
