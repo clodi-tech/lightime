@@ -98,6 +98,9 @@ function Clock() {
 
     return (
         <div>
+            <p className='row mid extra-small'>
+                a project by <a href='https://sonolibero.io' target='_blank' rel='noopener noreferrer'>libero</a>
+            </p>
             {coords ? (
                 <>
                     <p className='row dark small'>
