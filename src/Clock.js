@@ -104,29 +104,29 @@ function Clock() {
             {coords ? (
                 <>
                     <p className='row dark small'>
-                        <div className='tooltip'>
+                        <span className='tooltip'>
                             <img src={iconLocation} alt='location icon' className='icon-small' />
                             <span className='tooltiptext'>your current location</span>
-                        </div>
+                        </span>
                         {coords.latitude} {coords.longitude}
                     </p>
                     {lastEvent ? (
                         <div>
                             <p className='row mid medium'>
-                                <div className='tooltip'>
+                                <span className='tooltip'>
                                     <img src={lastEvent.icon} alt='last icon' className='icon-medium' />
                                     <span className='tooltiptext'>last event</span>
-                                </div>
-                                <div onClick={toggleShowLast}>
+                                </span>
+                                <span onClick={toggleShowLast}>
                                     {showLast ? lastEvent.time.toLocaleString() : lastEvent.event}
-                                </div>
+                                </span>
                             </p>
                             <p className='row white big'>
-                                <div className='tooltip'>
+                                <span className='tooltip'>
                                     <img src={iconElapsed} alt='elapsed icon' className='icon-big' />
                                     <span className='tooltiptext'>time passed from the last event</span>
-                                </div>
-                                <div onClick={toggleElaFormat}>{formatElapsed(elapsedTime)}</div>
+                                </span>
+                                <span onClick={toggleElaFormat}>{formatElapsed(elapsedTime)}</span>
                             </p>
                         </div>
                     ) : (
@@ -135,20 +135,20 @@ function Clock() {
                     {nextEvent ? (
                         <div>
                             <p className='row white big'>
-                                <div className='tooltip'>
+                                <span className='tooltip'>
                                     <img src={iconRemaining} alt='remaining icon' className='icon-big' />
                                     <span className='tooltiptext'>time remaining to the next event</span>
-                                </div>
-                                <div onClick={toggleRemFormat}>{formatRemaining(remainingTime)}</div>
+                                </span>
+                                <span onClick={toggleRemFormat}>{formatRemaining(remainingTime)}</span>
                             </p>
                             <p className='row mid medium'>
-                                <div className='tooltip'>
+                                <span className='tooltip'>
                                     <img src={nextEvent.icon} alt='next icon' className='icon-medium' />
                                     <span className='tooltiptext'>next event</span>
-                                </div>
-                                <div onClick={toggleShowNext}>
+                                </span>
+                                <span onClick={toggleShowNext}>
                                     {showNext ? nextEvent.time.toLocaleString() : nextEvent.event}
-                                </div>
+                                </span>
                             </p>
                         </div>
                     ) : (
