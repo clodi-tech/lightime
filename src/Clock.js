@@ -123,7 +123,7 @@ function Clock() {
                                     <img src={iconElapsed} alt='elapsed icon' className='icon-big' />
                                     <span className='tooltiptext'>time passed from the last event</span>
                                 </div>
-                                <div onClick={toggleElaFormat}>{formatElapsed(elapsedTime)}</div>
+                                <div onClick={toggleElaFormat}>{elapsedTime}</div>
                             </p>
                         </div>
                     ) : (
@@ -136,7 +136,7 @@ function Clock() {
                                     <img src={iconRemaining} alt='remaining icon' className='icon-big' />
                                     <span className='tooltiptext'>time remaining to the next event</span>
                                 </div>
-                                <div onClick={toggleRemFormat}>{formatRemaining(remainingTime)}</div>
+                                <div onClick={toggleRemFormat}>{remainingTime}</div>
                             </p>
                             <p className='row mid medium'>
                                 <div className='tooltip'>
