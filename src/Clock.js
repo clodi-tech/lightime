@@ -70,16 +70,13 @@ function Clock() {
         return () => clearInterval(interval);
     }, [lastEvent, nextEvent]);
 
-    const toggleElaFormat = () => {
-        setElaFormat(elapsedFormat === 't' ? 'hms' : 't');
-    };
+    const toggleFormat = (format, setFormat) => () => setFormat(format === 't' ? 'hms' : 't');
 
-    const toggleRemFormat = () => {
-        setRemFormat(remainingFormat === 't' ? 'hms' : 't');
-    };
+    const toggleElaFormat = toggleFormat(elapsedFormat, setElaFormat);
+    const toggleRemFormat = toggleFormat(remainingFormat, setRemFormat);
 
-    const formatElapsed = (time) => {
-        if (elapsedFormat === 't') {
+    const formatTime = (time, format) => {
+        if (format === 't') {
             return time;
         } else {
             const timeInSeconds = time / 10;
@@ -91,18 +88,8 @@ function Clock() {
         }
     };
 
-    const formatRemaining = (time) => {
-        if (remainingFormat === 't') {
-            return time;
-        } else {
-            const timeInSeconds = time / 10;
-            const hours = Math.floor(timeInSeconds / 3600).toString().padStart(2, '0');
-            const minutes = Math.floor((timeInSeconds % 3600) / 60).toString().padStart(2, '0');
-            const seconds = Math.floor(timeInSeconds % 60).toString().padStart(2, '0');
-            const tenths = time % 10; // get the remaining tenths of a second
-            return `${hours}:${minutes}:${seconds}${tenths}`;
-        }
-    };
+    const formatElapsed = (time) => formatTime(time, elapsedFormat);
+    const formatRemaining = (time) => formatTime(time, remainingFormat);
 
     const toggle = (setter) => () => setter(state => !state);
 
