@@ -121,15 +121,20 @@ function Clock() {
         <div>
             {coords ? (
                 <>
-                    <p className='row dark small tooltip'>
-                        <span className='tooltiptext'>your current position</span>
-                        <img src={iconLocation} alt='location icon' className='icon-small' />
+                    <p className='row dark small'>
+                        <div className='tooltip'>
+                            <img src={iconLocation} alt='location icon' className='icon-small' />
+                            <span className='tooltiptext'>your current location</span>
+                        </div>
                         {coords.latitude} {coords.longitude}
                     </p>
                     {lastEvent ? (
                         <div>
                             <p className='row mid medium'>
-                                <img src={lastEvent.icon} alt='last icon' className='icon-medium' />
+                                <div className='tooltip'>
+                                    <img src={lastEvent.icon} alt='last icon' className='icon-medium' />
+                                    <span className='tooltiptext'>last event</span>
+                                </div>
                                 <div onClick={toggleShowLast}>
                                     {showLast ? lastEvent.time.toLocaleTimeString() : 'last ' + lastEvent.event}
                                 </div>
@@ -155,7 +160,10 @@ function Clock() {
                                 <div onClick={toggleRemFormat}>{formatRemaining(remainingTime)}</div>
                             </p>
                             <p className='row mid medium'>
-                                <img src={nextEvent.icon} alt='next icon' className='icon-medium' />
+                                <div className='tooltip'>
+                                    <img src={nextEvent.icon} alt='next icon' className='icon-medium' />
+                                    <span className='tooltiptext'>next event</span>
+                                </div>
                                 <div onClick={toggleShowNext}>
                                     {showNext ? nextEvent.time.toLocaleTimeString() : 'next ' + nextEvent.event}
                                 </div>
