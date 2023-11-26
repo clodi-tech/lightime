@@ -44,21 +44,23 @@ function Clock() {
             const sunsetYesterday = getSunset(coords.latitude, coords.longitude, yesterday);
             const sunriseTomorrow = getSunrise(coords.latitude, coords.longitude, tomorrow);
 
-            if (today > sunsetToday) {
-                setLastEvent({ event: 'sunset', time: sunsetToday, icon: iconSunset });
-            } else if (today > sunriseToday) {
-                setLastEvent({ event: 'sunrise', time: sunriseToday, icon: iconSunrise });
-            } else {
-                setLastEvent({ event: 'sunset', time: sunsetYesterday, icon: iconSunset });
-            }
+            const setEvent = (event, time, icon) => ({ event, time, icon });
 
-            if (today < sunriseToday) {
-                setNextEvent({ event: 'sunrise', time: sunriseToday, icon: iconSunrise });
-            } else if (today < sunsetToday) {
-                setNextEvent({ event: 'sunset', time: sunsetToday, icon: iconSunset });
-            } else {
-                setNextEvent({ event: 'sunrise', time: sunriseTomorrow, icon: iconSunrise });
-            }
+            setLastEvent(
+                today > sunsetToday
+                    ? setEvent('sunset', sunsetToday, iconSunset)
+                    : today > sunriseToday
+                    ? setEvent('sunrise', sunriseToday, iconSunrise)
+                    : setEvent('sunset', sunsetYesterday, iconSunset)
+            );
+
+            setNextEvent(
+                today < sunriseToday
+                    ? setEvent('sunrise', sunriseToday, iconSunrise)
+                    : today < sunsetToday
+                    ? setEvent('sunset', sunsetToday, iconSunset)
+                    : setEvent('sunrise', sunriseTomorrow, iconSunrise)
+            );
         }
     }, [coords]);
 
