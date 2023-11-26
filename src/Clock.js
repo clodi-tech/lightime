@@ -24,6 +24,8 @@ function Clock() {
         );
     }, []);
 
+    const setEvent = (event, time, icon) => ({ event, time, icon });
+
     useEffect(() => {
         if (coords) {
             const today = new Date();
@@ -36,8 +38,6 @@ function Clock() {
             const sunsetToday = getSunset(coords.latitude, coords.longitude);
             const sunsetYesterday = getSunset(coords.latitude, coords.longitude, yesterday);
             const sunriseTomorrow = getSunrise(coords.latitude, coords.longitude, tomorrow);
-
-            const setEvent = (event, time, icon) => ({ event, time, icon });
 
             setLastEvent(
                 today > sunsetToday
