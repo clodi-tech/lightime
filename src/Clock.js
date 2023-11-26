@@ -18,12 +18,17 @@ function Clock() {
     const [showNext, setShowNext] = useState(false);
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition((position) => {
-            setCoords({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-            });
-        });
+        navigator.geolocation.getCurrentPosition(
+            (position) => {
+                setCoords({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                });
+            },
+            (error) => {
+                alert("Error: " + error.code + " - " + error.message);
+            }
+        );
     }, []);
 
     useEffect(() => {
