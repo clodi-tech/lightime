@@ -59,21 +59,16 @@ function Clock() {
 
     useEffect(() => {
         const interval = setInterval(() => {
+            const now = new Date();
             if (lastEvent) {
-                setElapsedTime(Math.floor((new Date() - lastEvent.time) / 100));
+                setElapsedTime(Math.floor((now - lastEvent.time) / 100));
             }
-        }, 100);
-        return () => clearInterval(interval);
-    }, [lastEvent]);
-
-    useEffect(() => {
-        const interval = setInterval(() => {
             if (nextEvent) {
-                setRemainingTime(Math.floor((nextEvent.time - new Date()) / 100));
+                setRemainingTime(Math.floor((nextEvent.time - now) / 100));
             }
         }, 100);
         return () => clearInterval(interval);
-    }, [nextEvent]);
+    }, [lastEvent, nextEvent]);
 
     const toggleElaFormat = () => {
         setElaFormat(elapsedFormat === 't' ? 'hms' : 't');
