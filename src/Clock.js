@@ -19,15 +19,8 @@ function Clock() {
 
     useEffect(() => {
         navigator.geolocation.getCurrentPosition(
-            (position) => {
-                setCoords({
-                    latitude: position.coords.latitude,
-                    longitude: position.coords.longitude,
-                });
-            },
-            (error) => {
-                alert("Error: " + error.code + " - " + error.message);
-            }
+            ({ coords: { latitude, longitude } }) => setCoords({ latitude, longitude }),
+            ({ code, message }) => alert(`Error: ${code} - ${message}`)
         );
     }, []);
 
