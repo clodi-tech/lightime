@@ -97,3 +97,7 @@ body {
   visibility: visible;
   opacity: 1;
 }
+
+a.light {
+  text-decoration: none;
+}
