@@ -108,7 +108,7 @@ function Clock() {
                             <img src={iconLocation} alt='location icon' className='icon-small' />
                             <span className='tooltiptext'>your current location</span>
                         </span>
-                        {coords.latitude} {coords.longitude}
+                        {coords.latitude.toFixed(5)} {coords.longitude.toFixed(5)}
                     </p>
                     {lastEvent ? (
                         <div>
