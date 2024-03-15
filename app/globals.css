@@ -47,3 +47,90 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
+.row{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.white{
+  color: #FFFFFF;
+}
+
+.light{
+  color: #BBBBBB;
+}
+
+.mid{
+  color: #888888;
+}
+
+.dark{
+  color: #444444;
+}
+
+.black{
+  color: #000000;
+}
+
+.big{
+  font-size: calc(31px + 4vmin);
+}
+
+.medium{
+  font-size: calc(19px + 3vmin);
+}
+
+.small{
+  font-size: calc(12px + 2vmin);
+}
+
+.tooltip {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  
+  background-color: #444444;
+  color: #BBBBBB;
+  font-size: 11px;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 6px;
+
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -60px;
+
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
+.icon-big{
+  width: calc(31px + 4vmin);
+  height: calc(31px + 4vmin);
+  padding-right: 31px;
+}
+
+.icon-medium{
+  width: calc(19px + 3vmin);
+  height: calc(19px + 3vmin);
+  padding-right: 19px;
+}
+
+.icon-small{
+  width: calc(12px + 2vmin);
+  height: calc(12px + 2vmin);
+  padding-right: 12px;
+}
