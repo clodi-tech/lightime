@@ -2,6 +2,8 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100;300;700&display=swap');
+
 body {
   color: #BBBBBB;
   background: #000000;
