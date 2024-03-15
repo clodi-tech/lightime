@@ -3,6 +3,12 @@
 import React, { useState, useEffect } from 'react';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
 import Image from 'next/image';
+import { Roboto_Mono } from 'next/font/google';
+
+const mono = Roboto_Mono({ 
+    subsets: ["latin"],
+    weight: ['300']
+});
 
 function Clock() {
     const [coords, setCoords] = useState(null);
@@ -121,7 +127,7 @@ function Clock() {
                                     <Image src='elapsed.svg' alt='elapsed icon' width={50} height={50} className='icon-big' />
                                     <span className='tooltiptext'>time passed from the last event</span>
                                 </span>
-                                <span onClick={toggleElaFormat}>{formatElapsed(elapsedTime)}</span>
+                                <span onClick={toggleElaFormat} className={mono.className}>{formatElapsed(elapsedTime)}</span>
                             </p>
                         </div>
                     ) : (
@@ -134,7 +140,7 @@ function Clock() {
                                     <Image src='remaining.svg' alt='remaining icon' width={50} height={50} className='icon-big' />
                                     <span className='tooltiptext'>time remaining to the next event</span>
                                 </span>
-                                <span onClick={toggleRemFormat}>{formatRemaining(remainingTime)}</span>
+                                <span onClick={toggleRemFormat} className={mono.className}>{formatRemaining(remainingTime)}</span>
                             </p>
                             <p className='row mid medium'>
                                 <span className='tooltip'>

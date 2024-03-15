@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Roboto_Mono } from "next/font/google";
+import { Rajdhani } from "next/font/google";
 import "./globals.css";
 
-const font = Roboto_Mono({ 
+const font = Rajdhani({ 
   subsets: ["latin"],
-  weight: ['200']
+  weight: ['300']
 });
 
 export const metadata: Metadata = {
