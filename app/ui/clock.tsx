@@ -2,11 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
-import iconLocation from './location.svg';
-import iconSunrise from './sunrise.svg';
-import iconSunset from './sunset.svg';
-import iconElapsed from './elapsed.svg';
-import iconRemaining from './remaining.svg';
+import Image from 'next/image';
 
 // Define TypeScript interfaces for state and other structures
 interface Coordinates {
@@ -57,18 +53,18 @@ function Clock() {
 
             setLastEvent(
                 today > sunsetToday
-                    ? setEvent('sunset', sunsetToday, iconSunset)
+                    ? setEvent('sunset', sunsetToday, "sunset.svg")
                     : today > sunriseToday
-                    ? setEvent('sunrise', sunriseToday, iconSunrise)
-                    : setEvent('sunset', sunsetYesterday, iconSunset)
+                    ? setEvent('sunrise', sunriseToday, "sunrise.svg")
+                    : setEvent('sunset', sunsetYesterday, "sunset.svg")
             );
 
             setNextEvent(
                 today < sunriseToday
-                    ? setEvent('sunrise', sunriseToday, iconSunrise)
+                    ? setEvent('sunrise', sunriseToday, "sunrise.svg")
                     : today < sunsetToday
-                    ? setEvent('sunset', sunsetToday, iconSunset)
-                    : setEvent('sunrise', sunriseTomorrow, iconSunrise)
+                    ? setEvent('sunset', sunsetToday, "sunset.svg")
+                    : setEvent('sunrise', sunriseTomorrow, "sunrise.svg")
             );
         }
     }, [coords]);
@@ -121,7 +117,7 @@ function Clock() {
                 <>
                     <p className='row dark small'>
                         <span className='tooltip'>
-                            <img src={iconLocation} alt='location icon' className='icon-small' />
+                            <Image src="location.svg" alt='location icon' width={50} height={50} />
                             <span className='tooltiptext'>your current location</span>
                         </span>
                         {coords.latitude.toFixed(5)} {coords.longitude.toFixed(5)}
@@ -130,7 +126,7 @@ function Clock() {
                         <div>
                             <p className='row mid medium'>
                                 <span className='tooltip'>
-                                    <img src={lastEvent.icon} alt='last icon' className='icon-medium' />
+                                    <Image src={lastEvent.icon} alt='last icon' width={50} height={50} />
                                     <span className='tooltiptext'>last event</span>
                                 </span>
                                 <span onClick={toggleShowLast}>
@@ -139,7 +135,7 @@ function Clock() {
                             </p>
                             <p className='row white big'>
                                 <span className='tooltip'>
-                                    <img src={iconElapsed} alt='elapsed icon' className='icon-big' />
+                                    <Image src="elapsed.svg" alt='elapsed icon' width={50} height={50} />
                                     <span className='tooltiptext'>time passed from the last event</span>
                                 </span>
                                 <span onClick={toggleElaFormat}>{formatElapsed(elapsedTime)}</span>
@@ -152,14 +148,14 @@ function Clock() {
                         <div>
                             <p className='row white big'>
                                 <span className='tooltip'>
-                                    <img src={iconRemaining} alt='remaining icon' className='icon-big' />
+                                    <Image src="remaining.svg" alt='remaining icon' width={50} height={50} />
                                     <span className='tooltiptext'>time remaining to the next event</span>
                                 </span>
                                 <span onClick={toggleRemFormat}>{formatRemaining(remainingTime)}</span>
                             </p>
                             <p className='row mid medium'>
                                 <span className='tooltip'>
-                                    <img src={nextEvent.icon} alt='next icon' className='icon-medium' />
+                                    <Image src={nextEvent.icon} alt='next icon' width={50} height={50} />
                                     <span className='tooltiptext'>next event</span>
                                 </span>
                                 <span onClick={toggleShowNext}>
