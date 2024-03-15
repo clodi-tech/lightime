@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Clock from "@/app/ui/clock";
 
 export default async function Home() {
   return (
@@ -10,7 +11,8 @@ export default async function Home() {
             priority={true}/>
       </header>
       <div className="left-side"></div>
-      <main>main
+      <main>
+        <Clock />
       </main>
       <div className="right-side section yellow"></div>
       <footer>
