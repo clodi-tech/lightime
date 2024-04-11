@@ -3,9 +3,9 @@
 import React, { useState, useEffect } from 'react';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
 import Image from 'next/image';
-import { Roboto_Mono } from 'next/font/google';
+import { JetBrains_Mono } from 'next/font/google';
 
-const mono = Roboto_Mono({ 
+const mono = JetBrains_Mono({ 
     subsets: ["latin"],
     weight: ['300']
 });
