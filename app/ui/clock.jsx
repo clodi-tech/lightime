@@ -105,13 +105,6 @@ function Clock() {
         <div className='flex flex-col justify-center items-center'>
             {coords ? (
                 <>
-                    <p className='row dark small'>
-                        <span className='tooltip'>
-                            <Image src='location.svg' alt='location icon' width={50} height={50} className='icon-small' />
-                            <span className='tooltiptext'>your current location</span>
-                        </span>
-                        {coords.latitude.toFixed(5)} {coords.longitude.toFixed(5)}
-                    </p>
                     <Cobe latitude={coords.latitude} longitude={coords.longitude} />
                     {lastEvent ? (
                         <div>
