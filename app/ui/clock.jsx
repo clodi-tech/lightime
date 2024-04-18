@@ -11,6 +11,9 @@ const mono = JetBrains_Mono({
     weight: ['300']
 });
 
+const small = 200;
+const large = 400;
+
 function Clock() {
     const [coords, setCoords] = useState(null);
     const [lastEvent, setLastEvent] = useState(null);
@@ -102,10 +105,10 @@ function Clock() {
     const toggleShowNext = toggle(setShowNext);
 
     // toogle size of the globe
-    const [size, setSize] = useState(200);
-    
+    const [size, setSize] = useState(small);
+
     const changeSize = () => {
-        setSize(size === 400 ? 200 : 400);
+        setSize(size === large ? small : large);
     };
 
     return (
