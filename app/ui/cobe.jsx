@@ -24,7 +24,7 @@ export default function Cobe({ coords, size }) {
       markerColor: [0.1, 0.8, 1],
       glowColor: [1, 1, 1],
       markers: [
-        { location: [coords.latitude, coords.longitude], size: 0.1 }
+        { location: [coords.latitude, coords.longitude], size: 0.07 }
       ],
       onRender: (state) => {
         state.phi = phi;
