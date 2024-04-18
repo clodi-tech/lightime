@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import { Rajdhani } from "next/font/google";
 import "./globals.css";
-import Header from "./home/header";
-import Footer from "./home/footer";
+import Header from "./ui/header";
+import Footer from "./ui/footer";
 
 import { Analytics } from "@vercel/analytics/react";
 
