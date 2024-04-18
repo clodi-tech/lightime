@@ -3,7 +3,7 @@
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 
-export default function Cobe({ coords }) {
+export default function Cobe({ coords, size }) {
   const canvasRef = useRef();
 
   useEffect(() => {
@@ -11,8 +11,8 @@ export default function Cobe({ coords }) {
 
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
-      width: 200 * 2,
-      height: 200 * 2,
+      width: size * 2,
+      height: size * 2,
       phi: 0,
       theta: 0,
       dark: 1,
@@ -40,7 +40,7 @@ export default function Cobe({ coords }) {
   return (
     <canvas
     ref={canvasRef}
-    style={{ width: 200, height: 200, maxWidth: "100%", aspectRatio: 1 }}
+    style={{ width: size, height: size, maxWidth: "100%", aspectRatio: 1 }}
     />
   );
 }

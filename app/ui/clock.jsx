@@ -101,11 +101,20 @@ function Clock() {
     const toggleShowLast = toggle(setShowLast);
     const toggleShowNext = toggle(setShowNext);
 
+    // toogle size of the globe
+    const [size, setSize] = useState(200);
+    
+    const changeSize = () => {
+        setSize(size === 400 ? 200 : 400);
+    };
+
     return (
         <div className='flex flex-col justify-center items-center'>
             {coords ? (
                 <>
-                    <Cobe coords={coords} />
+                    <div onClick={changeSize}>
+                        <Cobe coords={coords} size={size} />
+                    </div>
                     {lastEvent ? (
                         <div>
                             <p className='row mid medium'>
