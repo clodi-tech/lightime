@@ -5,9 +5,16 @@ import { useEffect, useRef } from "react";
 
 export default function Cobe({ coords, size }) {
   const canvasRef = useRef();
+  const locationToAngles = (lat, long) => {
+    return [Math.PI - ((long * Math.PI) / 180 - Math.PI / 2), (lat * Math.PI) / 180]
+  }
+  const focusRef = useRef([0, 0])
+  focusRef.current = locationToAngles(coords.latitude, coords.longitude)
 
   useEffect(() => {
-    let phi = 0;
+    let currentPhi = 0;
+    let currentTheta = 0;
+    const doublePi = Math.PI * 2;
 
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
@@ -27,8 +34,18 @@ export default function Cobe({ coords, size }) {
         { location: [coords.latitude, coords.longitude], size: 0.07 }
       ],
       onRender: (state) => {
-        state.phi = phi;
-        phi += 0.005;
+        state.phi = currentPhi
+        state.theta = currentTheta
+        const [focusPhi, focusTheta] = focusRef.current
+        const distPositive = (focusPhi - currentPhi + doublePi) % doublePi
+        const distNegative = (currentPhi - focusPhi + doublePi) % doublePi
+        // Control the speed
+        if (distPositive < distNegative) {
+          currentPhi += distPositive * 0.08
+        } else {
+          currentPhi -= distNegative * 0.08
+        }
+        currentTheta = currentTheta * 0.92 + focusTheta * 0.08
       }
     });
 
