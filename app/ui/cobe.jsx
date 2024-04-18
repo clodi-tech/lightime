@@ -3,7 +3,7 @@
 import createGlobe from "cobe";
 import { useEffect, useRef } from "react";
 
-export default function Cobe() {
+export default function Cobe({ longitude, latitude }) {
   const canvasRef = useRef();
 
   useEffect(() => {
@@ -24,7 +24,7 @@ export default function Cobe() {
       markerColor: [0.1, 0.8, 1],
       glowColor: [1, 1, 1],
       markers: [
-        { location: [40.7128, -74.006], size: 0.1 }
+        { location: [latitude, longitude], size: 0.1 }
       ],
       onRender: (state) => {
         // Called on every animation frame.

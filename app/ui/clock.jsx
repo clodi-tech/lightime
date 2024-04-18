@@ -112,7 +112,7 @@ function Clock() {
                         </span>
                         {coords.latitude.toFixed(5)} {coords.longitude.toFixed(5)}
                     </p>
-                    <Cobe />
+                    <Cobe latitude={coords.latitude} longitude={coords.longitude} />
                     {lastEvent ? (
                         <div>
                             <p className='row mid medium'>
