@@ -19,12 +19,11 @@ export default function Cobe() {
       diffuse: 1.2,
       mapSamples: 16000,
       mapBrightness: 6,
+      opacity: 0.6,
       baseColor: [0.3, 0.3, 0.3],
       markerColor: [0.1, 0.8, 1],
       glowColor: [1, 1, 1],
       markers: [
-        // longitude latitude
-        { location: [37.7595, -122.4367], size: 0.03 },
         { location: [40.7128, -74.006], size: 0.1 }
       ],
       onRender: (state) => {
@@ -43,7 +42,7 @@ export default function Cobe() {
   return (
     <canvas
     ref={canvasRef}
-    style={{ width: 600, height: 600, maxWidth: "100%", aspectRatio: 1 }}
+    style={{ width: 150, height: 150, maxWidth: "100%", aspectRatio: 1 }}
     />
   );
 }
