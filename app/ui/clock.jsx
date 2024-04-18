@@ -102,7 +102,7 @@ function Clock() {
     const toggleShowNext = toggle(setShowNext);
 
     return (
-        <div>
+        <div className='flex flex-col justify-center items-center'>
             {coords ? (
                 <>
                     <p className='row dark small'>
@@ -112,7 +112,7 @@ function Clock() {
                         </span>
                         {coords.latitude.toFixed(5)} {coords.longitude.toFixed(5)}
                     </p>
-                    <div className='flex justify-center items-center'><Cobe /></div>
+                    <Cobe />
                     {lastEvent ? (
                         <div>
                             <p className='row mid medium'>

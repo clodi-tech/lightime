@@ -11,8 +11,8 @@ export default function Cobe() {
 
     const globe = createGlobe(canvasRef.current, {
       devicePixelRatio: 2,
-      width: 600 * 2,
-      height: 600 * 2,
+      width: 200 * 2,
+      height: 200 * 2,
       phi: 0,
       theta: 0,
       dark: 1,
@@ -42,7 +42,7 @@ export default function Cobe() {
   return (
     <canvas
     ref={canvasRef}
-    style={{ width: 150, height: 150, maxWidth: "100%", aspectRatio: 1 }}
+    style={{ width: 200, height: 200, maxWidth: "100%", aspectRatio: 1 }}
     />
   );
 }
