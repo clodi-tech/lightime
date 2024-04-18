@@ -105,7 +105,7 @@ function Clock() {
         <div className='flex flex-col justify-center items-center'>
             {coords ? (
                 <>
-                    <Cobe latitude={coords.latitude} longitude={coords.longitude} />
+                    <Cobe coords={coords} />
                     {lastEvent ? (
                         <div>
                             <p className='row mid medium'>
