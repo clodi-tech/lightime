@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { getSunrise, getSunset } from 'sunrise-sunset-js';
 import Image from 'next/image';
 import { JetBrains_Mono } from 'next/font/google';
+import Cobe from './cobe';
 
 const mono = JetBrains_Mono({ 
     subsets: ["latin"],
@@ -111,6 +112,7 @@ function Clock() {
                         </span>
                         {coords.latitude.toFixed(5)} {coords.longitude.toFixed(5)}
                     </p>
+                    <Cobe />
                     {lastEvent ? (
                         <div>
                             <p className='row mid medium'>
