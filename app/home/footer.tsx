@@ -5,7 +5,7 @@ export default function Footer() {
             <p>created by</p>
             <a className="underline underline-offset-2" href='https://clodi.tech' target='_blank' rel="noopener">clodi</a>
           </div>
-          <div>© 2092</div>
+          <p className='cursor-help'>© 2092</p>
         </footer>
     );
 }
