@@ -19,6 +19,8 @@ export default function Clock() {
     const [coords, setCoords] = useState(null);
     const [last, setLast] = useState(null);
     const [next, setNext] = useState(null);
+    const [now, setNow] = useState(0);
+    const [then, setThen] = useState(0);
     const [elapsed, setElapsed] = useState(0);
     const [remaining, setRemaining] = useState(0);
 
@@ -44,6 +46,7 @@ export default function Clock() {
             const sunsetToday = getSunset(coords.latitude, coords.longitude);
             const sunsetYesterday = getSunset(coords.latitude, coords.longitude, yesterday);
             const sunriseTomorrow = getSunrise(coords.latitude, coords.longitude, tomorrow);
+            const sunsetTomorrow = getSunset(coords.latitude, coords.longitude, tomorrow);
 
             setLast(
                 today > sunsetToday
@@ -60,6 +63,18 @@ export default function Clock() {
                         ? setEvent('sunset', sunsetToday, "sunset.svg")
                             : setEvent('sunrise', sunriseTomorrow, "sunrise.svg")
             );
+
+            setNow(today > sunsetToday
+                ? Math.floor((sunriseTomorrow - sunsetToday) / 1000)
+                    : today > sunriseToday
+                    ? Math.floor((sunsetToday - sunriseToday) / 1000)
+                        : Math.floor((sunriseToday - sunsetYesterday) / 1000));
+            
+            setThen(today < sunriseToday
+                ? Math.floor((sunsetToday - sunriseToday) / 1000)
+                    : today < sunsetToday
+                    ? Math.floor((sunriseTomorrow - sunsetToday) / 1000)
+                        : Math.floor((sunsetTomorrow - sunriseTomorrow) / 1000));
         }
     }, [coords]);
 
@@ -99,9 +114,11 @@ export default function Clock() {
                         <div className='flex justify-center items-center gap-2'>
                             <Image src={last.icon} alt={last.event} width={icon} height={icon}/>
                             <div className='flex flex-col justify-center items-center gap-2'>
-                                <span className={mono.className}>{elapsed}</span>
+                                <small>you are having {now} seconds of ZZ</small>
+                                <span className={mono.className}>{elapsed} are gone</span>
                                 <p>bar</p>
-                                <span className={mono.className}>{remaining}</span>
+                                <span className={mono.className}>{remaining} ahead</span>
+                                <small>before {then} seconds of WW</small>
                             </div>
                             <Image src={next.icon} alt={next.event} width={icon} height={icon}/>
                         </div>
