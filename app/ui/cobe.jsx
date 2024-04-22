@@ -28,7 +28,7 @@ export default function Cobe({ coords, size }) {
       ],
       onRender: (state) => {
         state.phi = phi;
-        phi += 0.006;
+        phi -= 0.006;
       }
     });
 
