@@ -25,13 +25,14 @@ export default function Clock() {
     const [thenLabel, setThenLabel] = useState("");
     const [elapsed, setElapsed] = useState(0);
     const [remaining, setRemaining] = useState(0);
+    const [bar, setBar] = useState(0);
 
     useEffect(() => {
-        navigator.geolocation.getCurrentPosition(
-            ({ coords: { latitude, longitude } }) => setCoords({ latitude, longitude }),
-            ({ code, message }) => alert(`Error: ${code} - ${message}`)
-        );
-        // setCoords({ latitude: 51.5074, longitude: 0.1278 });
+        // navigator.geolocation.getCurrentPosition(
+        //     ({ coords: { latitude, longitude } }) => setCoords({ latitude, longitude }),
+        //     ({ code, message }) => alert(`Error: ${code} - ${message}`)
+        // );
+        setCoords({ latitude: 51.5074, longitude: 0.1278 });
     }, []);
 
     const setEvent = (event, time, icon) => ({ event, time, icon });
@@ -72,22 +73,22 @@ export default function Clock() {
                     ? Math.floor((sunsetToday - sunriseToday) / 1000)
                         : Math.floor((sunriseToday - sunsetYesterday) / 1000));
             
-            setThen(today < sunriseToday
+                        setThen(today < sunriseToday
                 ? Math.floor((sunsetToday - sunriseToday) / 1000)
                     : today < sunsetToday
                     ? Math.floor((sunriseTomorrow - sunsetToday) / 1000)
                         : Math.floor((sunsetTomorrow - sunriseTomorrow) / 1000));
             
             setNowLabel(today > sunsetToday
-                ? "dark"
+                ? "darkness"
                     : today > sunriseToday
                     ? "light"
-                        : "dark");
+                        : "darkness");
             
             setThenLabel(today < sunriseToday
                 ? "light"
                     : today < sunsetToday
-                    ? "dark"
+                    ? "darkness"
                         : "light");
         }
     }, [coords]);
@@ -105,6 +106,12 @@ export default function Clock() {
         return () => clearInterval(interval);
     }, [last, next]);
 
+    useEffect(() => {
+        if(elapsed && timeNow) {
+            setBar(Math.floor(elapsed / now * 100))
+        }
+    }, [elapsed]);
+
     // toogle size of the globe
     const [size, setSize] = useState(small);
 
@@ -113,11 +120,15 @@ export default function Clock() {
     };
 
     return (
-        <div className='flex flex-col justify-center items-center'>
+        <div className='flex flex-col justify-center items-center text-center gap-4'>
 
             {/* render content with user coordinates */}
             {coords ? (
                 <>
+                    {/* title */}
+                    <h1>everyday you have 86400 seconds<br />just like anybody else.</h1>
+                    <h2>but the sunlight you have<br />changes everyday.</h2>
+
                     {/* render globe with changing size */}
                     <div onClick={changeSize}>
                         <Cobe coords={coords} size={size} />
@@ -130,13 +141,15 @@ export default function Clock() {
                             <div className='flex flex-col justify-center items-center gap-2'>
                                 <small>you are having {now} seconds of {nowLabel}</small>
                                 <span className={mono.className}>{elapsed} are gone</span>
+                                <div className='border border-gray-600 w-full p-1 rounded-full'>
+                                    <div className='p-1 rounded-full bg-white w-[${bar}%]'>{bar}</div>
+                                </div>
                                 <span className={mono.className}>{remaining} ahead</span>
                                 <small>before {then} seconds of {thenLabel}</small>
                             </div>
                             <Image src={next.icon} alt={next.event} width={icon} height={icon}/>
                         </div>
                     )}
-
                 </>
             ) : (
                 'Getting location...'
