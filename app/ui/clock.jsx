@@ -107,7 +107,7 @@ export default function Clock() {
     }, [last, next]);
 
     useEffect(() => {
-        if(elapsed && timeNow) {
+        if(elapsed && now) {
             setBar(Math.floor(elapsed / now * 100))
         }
     }, [elapsed]);
