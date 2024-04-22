@@ -27,11 +27,11 @@ export default function Clock() {
     const [remaining, setRemaining] = useState(0);
 
     useEffect(() => {
-        // navigator.geolocation.getCurrentPosition(
-        //     ({ coords: { latitude, longitude } }) => setCoords({ latitude, longitude }),
-        //     ({ code, message }) => alert(`Error: ${code} - ${message}`)
-        // );
-        setCoords({ latitude: 51.5074, longitude: 0.1278 });
+        navigator.geolocation.getCurrentPosition(
+            ({ coords: { latitude, longitude } }) => setCoords({ latitude, longitude }),
+            ({ code, message }) => alert(`Error: ${code} - ${message}`)
+        );
+        // setCoords({ latitude: 51.5074, longitude: 0.1278 });
     }, []);
 
     const setEvent = (event, time, icon) => ({ event, time, icon });
