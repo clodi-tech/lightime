@@ -5,6 +5,7 @@ import { getSunrise, getSunset } from 'sunrise-sunset-js';
 import Image from 'next/image';
 import { JetBrains_Mono } from 'next/font/google';
 import Cobe from './cobe';
+import { Progress } from './progress';
 
 const mono = JetBrains_Mono({ 
     subsets: ["latin"],
@@ -141,9 +142,7 @@ export default function Clock() {
                             <div className='flex flex-col justify-center items-center gap-2'>
                                 <small>you are having {now} seconds of {nowLabel}</small>
                                 <span className={mono.className}>{elapsed} are gone</span>
-                                <div className='border border-gray-600 w-full p-1 rounded-full'>
-                                    <div className='p-1 rounded-full bg-white w-[${bar}%]'>{bar}</div>
-                                </div>
+                                <Progress value={bar} />
                                 <span className={mono.className}>{remaining} ahead</span>
                                 <small>before {then} seconds of {thenLabel}</small>
                             </div>
