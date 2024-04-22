@@ -21,6 +21,8 @@ export default function Clock() {
     const [next, setNext] = useState(null);
     const [now, setNow] = useState(0);
     const [then, setThen] = useState(0);
+    const [nowLabel, setNowLabel] = useState("");
+    const [thenLabel, setThenLabel] = useState("");
     const [elapsed, setElapsed] = useState(0);
     const [remaining, setRemaining] = useState(0);
 
@@ -75,6 +77,18 @@ export default function Clock() {
                     : today < sunsetToday
                     ? Math.floor((sunriseTomorrow - sunsetToday) / 1000)
                         : Math.floor((sunsetTomorrow - sunriseTomorrow) / 1000));
+            
+            setNowLabel(today > sunsetToday
+                ? "dark"
+                    : today > sunriseToday
+                    ? "light"
+                        : "dark");
+            
+            setThenLabel(today < sunriseToday
+                ? "light"
+                    : today < sunsetToday
+                    ? "dark"
+                        : "light");
         }
     }, [coords]);
 
@@ -114,11 +128,10 @@ export default function Clock() {
                         <div className='flex justify-center items-center gap-2'>
                             <Image src={last.icon} alt={last.event} width={icon} height={icon}/>
                             <div className='flex flex-col justify-center items-center gap-2'>
-                                <small>you are having {now} seconds of ZZ</small>
+                                <small>you are having {now} seconds of {nowLabel}</small>
                                 <span className={mono.className}>{elapsed} are gone</span>
-                                <p>bar</p>
                                 <span className={mono.className}>{remaining} ahead</span>
-                                <small>before {then} seconds of WW</small>
+                                <small>before {then} seconds of {thenLabel}</small>
                             </div>
                             <Image src={next.icon} alt={next.event} width={icon} height={icon}/>
                         </div>
